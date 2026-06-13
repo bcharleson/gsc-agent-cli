@@ -1,0 +1,61 @@
+{
+  "name": "gsc-agent-cli",
+  "version": "0.1.0",
+  "description": "CLI and MCP server for the Google Search Console API — sites, sitemaps, search analytics, URL inspection, and indexing reports. Built for humans and AI agents.",
+  "type": "module",
+  "bin": {
+    "gsc": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "google-search-console",
+    "gsc",
+    "search-console",
+    "seo",
+    "search-analytics",
+    "url-inspection",
+    "sitemaps",
+    "indexing",
+    "cli",
+    "mcp",
+    "ai-agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bcharleson/gsc-agent-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bcharleson/gsc-agent-cli/issues"
+  },
+  "homepage": "https://github.com/bcharleson/gsc-agent-cli#readme",
+  "author": "Top of Funnel",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "commander": "^14.0.3",
+    "googleapis": "^144.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}
