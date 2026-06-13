@@ -1,7 +1,7 @@
-# gsc-agent-cli — agent guide
+# gsc-agent-cli: agent guide
 
 This tool exposes the **Google Search Console API** to AI agents. Use it to read
-a site's search performance, check indexing, and manage sitemaps — everything a
+a site's search performance, check indexing, and manage sitemaps: everything a
 human sees in the Search Console UI that has an API.
 
 ## Identity & output
@@ -14,7 +14,7 @@ human sees in the Search Console UI that has an API.
 
 ## Property URLs (siteUrl)
 
-Two forms — always pass one or rely on the configured default:
+Two forms, always pass one or rely on the configured default:
 - Domain property: `sc-domain:example.com`
 - URL-prefix property: `https://www.example.com/` (trailing slash matters)
 
@@ -28,7 +28,7 @@ Set a default once: `gsc config set-site sc-domain:example.com`, then omit `--si
 - **Is a URL indexed?** `inspect_url` → read
   `inspectionResult.indexStatusResult.coverageState` and `.verdict` (PASS =
   indexed).
-- **How much of the site is indexed?** `indexing_report` — fans out URL
+- **How much of the site is indexed?** `indexing_report` fans out URL
   inspection over the sitemap and tallies. Respect the 2000/day inspection
   quota; use `limit`.
 

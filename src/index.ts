@@ -13,7 +13,8 @@ program
   .option('--key-file <path>', 'Service account JSON key file (overrides env + stored config)')
   .option('--output <format>', 'Output format: json (default) or pretty', 'json')
   .option('--pretty', 'Shorthand for --output pretty')
-  .option('--quiet', 'Suppress output, exit codes only');
+  .option('--quiet', 'Suppress output, exit codes only')
+  .option('--fields <fields>', 'Comma-separated fields to keep in output (projects rows/siteEntry/sitemap arrays)');
 
 program.hook('preAction', (thisCommand) => {
   const opts = thisCommand.optsWithGlobals() as { output?: string; pretty?: boolean };
