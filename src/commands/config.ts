@@ -39,6 +39,20 @@ export function registerConfigCommand(program: Command): void {
     });
 
   cfg
+    .command('set-api-key <key>')
+    .description('Persist a Google API key for key-based APIs (CrUX, PageSpeed Insights).')
+    .action(async (key: string) => {
+      const globalOpts = normalizeGlobalOptions(program.opts() as Record<string, unknown>);
+      try {
+        await patchConfig({ google_api_key: key });
+        output({ google_api_key: 'set' }, globalOpts);
+      } catch (error) {
+        outputError(error, globalOpts);
+        process.exit(1);
+      }
+    });
+
+  cfg
     .command('show')
     .description('Show current config (secrets redacted).')
     .action(async () => {
@@ -51,6 +65,7 @@ export function registerConfigCommand(program: Command): void {
             default_site: config.default_site ?? null,
             service_account_key_file: config.service_account_key_file ?? null,
             oauth: config.oauth_refresh_token ? 'configured' : null,
+            google_api_key: config.google_api_key ? 'set' : null,
           },
           globalOpts,
         );

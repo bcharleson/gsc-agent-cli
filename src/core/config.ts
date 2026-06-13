@@ -17,6 +17,8 @@ export interface GSCConfig {
   service_account_key_file?: string;
   /** Default siteUrl so commands can omit --site. */
   default_site?: string;
+  /** Google API key for key-based APIs (CrUX, PageSpeed Insights). */
+  google_api_key?: string;
 }
 
 export function getConfigDir(): string {

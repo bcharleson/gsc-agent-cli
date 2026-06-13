@@ -10,8 +10,9 @@ import { CLI_VERSION } from '../core/version.js';
  * truth, so a human and an AI agent see identical capabilities.
  */
 export async function startMcpServer(): Promise<void> {
-  // Resolve credentials once at startup; fail fast if missing.
-  const client = await GSCClient.create();
+  // Lazy client: GSC auth resolves on first owned-property call, so key-based
+  // tools (CrUX, PageSpeed Insights) work even without GSC credentials.
+  const client = new GSCClient();
 
   const server = new McpServer({ name: 'gsc', version: CLI_VERSION });
 

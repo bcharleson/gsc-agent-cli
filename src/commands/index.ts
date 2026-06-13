@@ -25,6 +25,9 @@ import { topQueriesCommand } from './search-analytics/top-queries.js';
 import { topPagesCommand } from './search-analytics/top-pages.js';
 import { inspectUrlCommand } from './inspect/url.js';
 import { indexingReportCommand } from './indexing/report.js';
+import { cruxQueryCommand } from './crux/query.js';
+import { pagespeedRunCommand } from './pagespeed/run.js';
+import { snapshotSiteCommand } from './snapshot/site.js';
 
 /** Every API-backed command. Iterated by both the CLI and the MCP server. */
 export const allCommands: CommandDefinition[] = [
@@ -46,6 +49,11 @@ export const allCommands: CommandDefinition[] = [
   inspectUrlCommand,
   // Composite indexing report
   indexingReportCommand,
+  // Outside GSC: real-user + lab performance
+  cruxQueryCommand,
+  pagespeedRunCommand,
+  // Holistic composite
+  snapshotSiteCommand,
 ];
 
 /** Commands exposed to MCP agents. */
@@ -125,7 +133,7 @@ function registerCommand(parent: Command, cmdDef: CommandDefinition): void {
       const parsed = cmdDef.inputSchema.safeParse(input);
       if (!parsed.success) throw formatInputValidationError(parsed.error);
 
-      const client = await GSCClient.create(globalOpts.keyFile);
+      const client = new GSCClient({ keyFile: globalOpts.keyFile });
       const result = await cmdDef.handler(parsed.data as Record<string, any>, client);
       output(result, globalOpts);
     } catch (error) {
